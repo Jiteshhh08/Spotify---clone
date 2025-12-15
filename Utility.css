@@ -1,0 +1,51 @@
+.flex{
+   display: flex;
+}
+
+.justify{
+    justify-content: center;
+}
+
+.align{
+    align-items: center;
+}
+
+.p-5{
+    padding: 5px;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.m-10{
+    margin: 10px;
+}
+
+.r-10{
+    border-radius: 10px;
+}
+
+.invert{
+    filter: invert(1);
+}
+
+.f-85rem{
+    font-size: 0.85rem;
+}
+
+.Cur_p{
+    cursor: pointer;
+}
+
+.bg-grey{
+    background-color: #121212;
+}
+
+.bg-l-grey{
+    background-color: #343434;
+}
+
+.bg-black{
+    background-color: #000;
+}

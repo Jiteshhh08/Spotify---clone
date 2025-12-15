@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify - Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Utility.css" />
+  </head>
+  <body>
+    <div class="main_container bg-black">
+      <!-- left Side -->
+
+      <div class="left">
+        <img class="close Cur_p" src="/Assets/Close.svg" alt="Close">
+        <div class="home p-10 r-10 m-10 f-85rem bg-grey">
+          <span>
+            <img src="/Assets/Logo.svg" class="Logo invert Cur_p" alt="Logo" />
+          </span>
+          <ul>
+            <li>
+              <img src="/Assets/Home.svg" class="invert Cur_p" alt="Home" /><span
+                >Home</span
+              >
+            </li>
+            <li>
+              <img src="/Assets/search.svg" class="invert Cur_p" alt="Search" /><span
+                >Search</span
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="library p-10 r-10 m-10 f-85rem bg-grey flex">
+          <div class="library_head flex p-5">
+            <p>Your Library</p>
+            <div class="add_btn invert Cur_p">
+              <img src="/Assets/Add.svg" alt="Add" />
+            </div>
+          </div>
+
+          <div class="song_list">
+            <ul>
+              <!-- <li class="song_info flex g-30px">
+                <img src="M/Assests/usic.svg" alt="">
+                <div class="song_info_details">
+                  <div class="Cur_p">Song name</div>
+                  <div class="Cur_p">Song artist</div>
+                </div>
+                <img class="lib-btn play_btn_img Cur_p" src="/Assets/PlayCircle.svg" alt="">
+              </li> -->
+            </ul>
+          </div>
+
+          <div class="library_footer p-10">
+            <a href="/"><span>Legal</span></a>
+            <a href="/"><span>Safety & Privacy Center</span></a>
+            <a href="/"><span>Privacy Policy</span></a>
+            <a href="//Images/"><span>Cookies</span></a>
+            <a href="/"><span>About</span></a>
+            <a href="/"><span>Accesibility</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- right Side -->
+
+      <div class="right r-10 f-85rem bg-grey">
+        <div class="header flex align p-10 r-10 bg-l-grey">
+          <div class="nav flex">
+            <img class="menu Cur_p" src="/Assets/Hamburger.svg" alt="Menu">
+            <span class="material-icons Cur_p">chevron_left</span>
+            <span class="material-icons Cur_p">chevron_right</span>
+          </div>
+          <div class="header_buttons">
+            <button class="signup bg-l-grey Cur_p">Sign up</button>
+            <button class="login Cur_p">Log in</button>
+          </div>
+        </div>
+
+        <!-- playlists -->
+        <div class="spotify_playlist">
+          <h2 class="playlist_head Cur_p">Spotify playlists</h2>
+          <div class="card_container flex">
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img playlists_btn" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img1.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img2.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img3.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img4.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img5.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img6.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="play_btn">
+                <img class="play_btn_img" src="/Assets/PlayCircle.svg" alt="" />
+              </div>
+              <img class="song_img Cur_p" src="/Images/Trending_img7.jpeg" alt="" />
+              <h3>
+                <span class="song_title Cur_p f-85rem">Aawara angaara</span>
+              </h3>
+              <p class="song_artists Cur_p">
+                A.R Rehman, Faheem Abdullah, Irshad Kamil
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Playbar -->
+
+        <div class="playbar">
+          <div class="up_sec_playbar">
+            <div class="song_details">
+
+            </div>
+            <div class="song_btn flex align justify invert">
+              <img class="prev Cur_p" src="/Assets/PrevSong.svg" alt="Previous" />
+              <img class="play Cur_p" src="/Assets/PlayCircle.svg" alt="PlayCircle.svg" />
+              <img class="next Cur_p" src="/Assets/NextSong.svg" alt="Next" />
+            </div>
+            <div class="up_sec_playbar_right flex align justify">
+            <div class="song_time">
+
+            </div>
+            <div class="song_volume flex align justify">
+              <img class="vol_btn Cur_p" src="/Assets/Volume.svg" alt="Volume">
+              <input class="vol_range Cur_p" type="range" name="volume">
+            </div> 
+          </div>
+          </div>
+          <div class="seek_time flex align Cur_p">
+            <div class="circle Cur_p"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="Script.js"></script>
+</html>
