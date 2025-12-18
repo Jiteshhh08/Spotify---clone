@@ -237,6 +237,9 @@ async function main() {
     volRange.addEventListener("change", (e) => {
       // console.log(e,e.target,e.target.value);
       currentSong.volume = parseInt(e.target.value) / 100;
+      if(currentSong.volume > 0){
+        document.querySelector(".vol_btn").src = document.querySelector(".vol_btn").src.replace("Mute","Volume")
+      }
     });
 
   //Load the playlist whenever the card is clicked
@@ -253,11 +256,11 @@ async function main() {
   document.querySelector(".vol_btn").addEventListener("click", (e) => {
     // console.log(e.target);
     if (e.target.src.includes("Volume")) {
-      e.target.src = e.target.src.replaceAll("Volume", "Mute")
+      e.target.src = e.target.src.replace("Volume", "Mute")
       currentSong.volume = 0
       volRange.value = 0
     } else {
-      e.target.src = e.target.src.replaceAll("Mute", "Volume")
+      e.target.src = e.target.src.replace("Mute", "Volume")
       currentSong.volume = 0.1
       volRange.value = 10
     }
