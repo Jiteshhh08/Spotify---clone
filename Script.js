@@ -2,6 +2,8 @@ let currentSong = new Audio();
 const play = document.querySelector(".play");
 let songs;
 let currFolder;
+let Anchors;
+let cardHTML = ""; // build string here
 
 //Converts duration into correct format
 
@@ -27,7 +29,7 @@ async function getSongs(folder) {
   let as = div.getElementsByTagName("a");
 
   // console.log(as);
-  
+
   songs = [];
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
@@ -35,14 +37,14 @@ async function getSongs(folder) {
       songs.push(element.href.split(`/${folder}/`)[1]);
     }
   }
-  
+
   //Show all songs in the playlist
 
   let song_Ul = document
     .querySelector(".song_list")
     .getElementsByTagName("ul")[0];
 
-    song_Ul.innerHTML = ""    //this helps in changing the folder and not adding the song in the same folder
+  song_Ul.innerHTML = ""; //this helps in changing the folder and not adding the song in the same folder
   for (const song of songs) {
     song_Ul.innerHTML =
       song_Ul.innerHTML +
@@ -65,7 +67,7 @@ async function getSongs(folder) {
       playSong(e.querySelector("div").firstElementChild.innerHTML.trim());
     });
   });
-
+  return songs;
 }
 
 const playSong = (track, pause = false) => {
@@ -78,12 +80,48 @@ const playSong = (track, pause = false) => {
   document.querySelector(".song_time").innerHTML = "00:00 / 00:00";
 };
 
-async function main() {
+async function DisplayAlbums() {
+  let a = await fetch(`http://127.0.0.1:5500/Songs/`);
+  let response = await a.text();
 
+  let div = document.createElement("div");
+  div.innerHTML = response;
+
+  let Anchors = div.getElementsByTagName("a");
+  cardHTML = "";
+
+  for (let e of Anchors) {
+    if (e.href.includes("/Songs/")) {
+      let folder = e.href.split("/Songs/")[1];
+      console.log(folder);
+      
+      let a = await fetch(`http://127.0.0.1:5500/Songs/${folder}/info.json`);
+      let response = await a.json();
+
+      cardHTML += `
+        <div data-folder="${folder}" class="card Cur_p">
+          <div class="play_btn">
+            <img class="play_btn_img playlists_btn" src="/Assets/PlayCircle.svg" />
+          </div>
+          <img class="song_img" src="/Songs/${folder}/COVER.jpeg" />
+          <h3 class="song_title">${response.title}</h3>
+          <p class="song_artists">${response.description}</p>
+        </div>`;
+    }
+  }
+
+  document.querySelector(".card_container").innerHTML = cardHTML;
+}
+
+async function main() {
   //get the list of each songs
   await getSongs(`Songs`);
   playSong(songs[0], true);
   // console.log(songs);
+
+  //Display all the albums on the page
+
+  await DisplayAlbums();
 
   //attach an event listner to play,next and previous
 
@@ -163,10 +201,9 @@ async function main() {
 
   Array.from(document.getElementsByClassName("card")).forEach((e) => {
     // console.log(e, e.target, e.target.id);
-    e.addEventListener("click", async item => {
+    e.addEventListener("click", async (item) => {
       console.log(item, item.currentTarget.dataset);
       songs = await getSongs(`Songs/${item.currentTarget.dataset.folder}`);
-
     });
   });
 }
