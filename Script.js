@@ -17,6 +17,22 @@ function secondsToMinutesSeconds(totalSeconds) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
+//Disabling play buttons
+
+function disablePlay() {
+  isPlayable = false;
+  play.classList.add("disabled");
+  play.style.pointerEvents = "none";
+  play.style.opacity = "0.4";
+}
+
+function enablePlay() {
+  isPlayable = true;
+  play.classList.remove("disabled");
+  play.style.pointerEvents = "auto";
+  play.style.opacity = "1";
+}
+
 async function getSongs(folder) {
   currFolder = folder;
   let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
@@ -49,7 +65,7 @@ async function getSongs(folder) {
     song_Ul.innerHTML =
       song_Ul.innerHTML +
       `<li class="song_info flex align Cur_p">
-                <img src="Music.svg" alt="">
+                <img src="/Assets/Music.svg" alt="">
                 <div class="song_info_details">
                   <div> ${song.replaceAll("%20", " ")}</div>
                   <div>Jitesh Jha</div>
@@ -70,14 +86,33 @@ async function getSongs(folder) {
   return songs;
 }
 
-const playSong = (track, pause = false) => {
-  currentSong.src = `/${currFolder}/` + track;
-  if (!pause) {
-    currentSong.play();
-    play.src = "Pause.svg";
+let defaultSongName = "Select a song to be played";
+
+const playSong = (track, shouldPlay = true) => {
+  // Always update UI
+  document.querySelector(".song_details").innerText = track
+    ? track.replaceAll("%20", " ")
+    : defaultSongName;
+
+  if (!track) {
+    disablePlay();
+    return;
+  } 
+
+  // Build path safely
+  let songPath = `/${currFolder}/${track}`;
+
+  currentSong.src = songPath;
+  currentSong.load();
+    enablePlay();
+
+
+  if (shouldPlay) {
+    currentSong.play().catch(() => {});
+    play.src = "/Assets/Pause.svg";
+  } else {
+    play.src = "/Assets/PlayCircle.svg";
   }
-  document.querySelector(".song_details").innerHTML = decodeURI(track);
-  document.querySelector(".song_time").innerHTML = "00:00 / 00:00";
 };
 
 async function DisplayAlbums() {
@@ -94,7 +129,7 @@ async function DisplayAlbums() {
     if (e.href.includes("/Songs/")) {
       let folder = e.href.split("/Songs/")[1];
       console.log(folder);
-      
+
       let a = await fetch(`http://127.0.0.1:5500/Songs/${folder}/info.json`);
       let response = await a.json();
 
@@ -114,8 +149,15 @@ async function DisplayAlbums() {
 }
 
 async function main() {
+  disablePlay();
+  document.querySelector(".song_details").innerText = defaultSongName;
   //get the list of each songs
   await getSongs(`Songs`);
+
+  if (songs.length > 0) {
+    playSong(songs[0], false); // preload UI + metadata only
+  }
+
   playSong(songs[0], true);
   // console.log(songs);
 
