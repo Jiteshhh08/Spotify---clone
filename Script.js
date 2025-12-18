@@ -97,15 +97,14 @@ const playSong = (track, shouldPlay = true) => {
   if (!track) {
     disablePlay();
     return;
-  } 
+  }
 
   // Build path safely
   let songPath = `/${currFolder}/${track}`;
 
   currentSong.src = songPath;
   currentSong.load();
-    enablePlay();
-
+  enablePlay();
 
   if (shouldPlay) {
     currentSong.play().catch(() => {});
@@ -234,10 +233,11 @@ async function main() {
 
   //Add event listner to volume
 
-  document.querySelector(".vol_range").addEventListener("change", (e) => {
-    // console.log(e,e.target,e.target.value);
-    currentSong.volume = parseInt(e.target.value) / 100;
-  });
+  let volRange = document.querySelector(".vol_range")
+    volRange.addEventListener("change", (e) => {
+      // console.log(e,e.target,e.target.value);
+      currentSong.volume = parseInt(e.target.value) / 100;
+    });
 
   //Load the playlist whenever the card is clicked
 
@@ -247,6 +247,20 @@ async function main() {
       console.log(item, item.currentTarget.dataset);
       songs = await getSongs(`Songs/${item.currentTarget.dataset.folder}`);
     });
+  });
+
+  //Volume button Muting functionality
+  document.querySelector(".vol_btn").addEventListener("click", (e) => {
+    // console.log(e.target);
+    if (e.target.src.includes("Volume")) {
+      e.target.src = e.target.src.replaceAll("Volume", "Mute")
+      currentSong.volume = 0
+      volRange.value = 0
+    } else {
+      e.target.src = e.target.src.replaceAll("Mute", "Volume")
+      currentSong.volume = 0.1
+      volRange.value = 10
+    }
   });
 }
 main();
